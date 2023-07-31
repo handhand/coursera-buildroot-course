@@ -33,6 +33,8 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
     cd linux-stable
     echo "Checking out version ${KERNEL_VERSION}"
     git checkout ${KERNEL_VERSION}
+    wget https://raw.githubusercontent.com/bwalle/ptxdist-vetero/f1332461242e3245a47b4685bc02153160c0a1dd/patches/linux-5.0/dtc-multiple-definition.patch
+    git apply dtc-multiple-definition.patch
 
     # TODO: Add your kernel build steps here
     make ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu- mrproper
